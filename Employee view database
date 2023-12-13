@@ -1,0 +1,87 @@
+-- Table for Employee
+CREATE TABLE Employee (
+    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(100),
+    Phone VARCHAR(20),
+    Address VARCHAR(255)
+    -- Add other relevant fields as needed
+);
+
+-- Table for Demographic Information
+CREATE TABLE DemographicInformation (
+    DemographicID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    BirthDate DATE,
+    Gender VARCHAR(10),
+    Nationality VARCHAR(50),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Table for Leave Credits
+CREATE TABLE LeaveCredits (
+    LeaveCreditID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    LeaveType VARCHAR(50),
+    Credits INT,
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Create other tables for Leave History, Bursary Status, IPDP, Payslips, Assets, Applications following similar patterns...
+
+-- Table for Leave History
+CREATE TABLE LeaveHistory (
+    LeaveHistoryID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    LeaveType VARCHAR(50),
+    StartDate DATE,
+    EndDate DATE,
+    Status VARCHAR(20),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Table for Bursary Status
+CREATE TABLE BursaryStatus (
+    BursaryID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    BursaryType VARCHAR(50),
+    Status VARCHAR(20),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Table for IPDP
+CREATE TABLE IPDP (
+    IPDPID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    PlanDetails TEXT,
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Table for Payslips
+CREATE TABLE Payslips (
+    PayslipID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    Month INT,
+    Year INT,
+    PayAmount DECIMAL(10, 2),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Table for Assets
+CREATE TABLE Assets (
+    AssetID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    AssetType VARCHAR(50),
+    AssetDetails TEXT,
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+-- Table for Applications
+CREATE TABLE Applications (
+    ApplicationID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT,
+    ApplicationType VARCHAR(50),
+    AccessLevel VARCHAR(20),
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
